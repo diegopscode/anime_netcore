@@ -12,7 +12,7 @@ namespace Anime_netcore.Controllers
         private readonly AnimeContext DB;
 
         public AnimesController(AnimeContext context) {
-            DB = new AnimeContext(context);
+            DB = DB = context;
         }
 
         // GET api/animes
