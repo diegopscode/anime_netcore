@@ -9,6 +9,14 @@ namespace Animenetcore.Models
         {
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            // modelBuilder.Entity<Anime>().HasMany(c => c.episodes).WithOne(e => e.anime);
+        }
+
         public DbSet<Anime> Animes { get; set; }
+        public DbSet<Episode> Episdes { get; set; }
+        public DbSet<User> Users { get; set; }
+
     }
 }
