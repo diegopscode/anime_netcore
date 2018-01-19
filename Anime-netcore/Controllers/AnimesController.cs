@@ -12,17 +12,13 @@ namespace Anime_netcore.Controllers
         private readonly AnimeContext DB;
 
         public AnimesController(AnimeContext context) {
-            DB = DB = context;
+            DB = context;
         }
 
         // GET api/animes
         [HttpGet]
         public IEnumerable<Anime> Get()
         {
-            //Anime anime = new Anime();
-
-            //return anime.Index();
-
             return DB.Animes.ToList();
         }
 
@@ -30,9 +26,8 @@ namespace Anime_netcore.Controllers
         [HttpGet("{id}")]
         public Anime Get(int id)
         {
-            Anime anime = new Anime();
-
-            return anime.Index().Where(x => x.id == id).FirstOrDefault();
+            return DB.Animes.Find(id);
+            // return DB.Animes.ToList().Where(x => x.id == id).FirstOrDefault();
         }
 
         // POST api/animes
