@@ -11,9 +11,10 @@ using System;
 namespace Animenetcore.Migrations
 {
     [DbContext(typeof(AnimeContext))]
-    partial class AnimeContextModelSnapshot : ModelSnapshot
+    [Migration("20180118180027_CreateUserAndRelations")]
+    partial class CreateUserAndRelations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,6 +25,8 @@ namespace Animenetcore.Migrations
                 {
                     b.Property<int>("id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<int>("episodes");
 
                     b.Property<string>("name");
 
@@ -39,40 +42,22 @@ namespace Animenetcore.Migrations
                     b.Property<int>("id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("animeid");
-
-                    b.Property<int>("episode");
+                    b.Property<int?>("Animeid");
 
                     b.Property<string>("name");
 
                     b.HasKey("id");
 
-                    b.HasIndex("animeid");
+                    b.HasIndex("Animeid");
 
-                    b.ToTable("Episdes");
-                });
-
-            modelBuilder.Entity("Animenetcore.Models.User", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("login");
-
-                    b.Property<string>("name");
-
-                    b.Property<string>("password");
-
-                    b.HasKey("id");
-
-                    b.ToTable("Users");
+                    b.ToTable("Episode");
                 });
 
             modelBuilder.Entity("Animenetcore.Models.Episode", b =>
                 {
-                    b.HasOne("Animenetcore.Models.Anime", "anime")
-                        .WithMany("episodes")
-                        .HasForeignKey("animeid");
+                    b.HasOne("Animenetcore.Models.Anime", "Anime")
+                        .WithMany("Episodes")
+                        .HasForeignKey("Animeid");
                 });
 #pragma warning restore 612, 618
         }
